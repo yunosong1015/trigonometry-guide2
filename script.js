@@ -487,6 +487,22 @@
             });
         }
 
+        /* 아래 정리 상자 — 아이콘을 눌러 펼칩니다 */
+        var simTip = document.getElementById('sim-tip');
+        if (simTip) {
+            var tipBtn = simTip.querySelector('.tip-toggle');
+            var tipBody = simTip.querySelector('.tip-body');
+            var tipLabel = simTip.querySelector('.tip-label');
+            if (tipBtn && tipBody) {
+                tipBtn.addEventListener('click', function () {
+                    var willOpen = tipBody.hidden;
+                    tipBody.hidden = !willOpen;
+                    tipBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+                    if (tipLabel) tipLabel.textContent = willOpen ? '정리 숨기기' : '정리 보기';
+                });
+            }
+        }
+
         if (simConcBtn) {
             simConcBtn.addEventListener('click', function () {
                 simConcOpen = !simConcOpen;
