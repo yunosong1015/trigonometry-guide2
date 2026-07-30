@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼각비 가이드 - 개념 학습</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="topbar">
+            <div class="logo">삼각비 Guide</div>
+            <div class="topbar-btns">
+                <a class="ghost-btn link-btn" href="https://yunosong1015.github.io/trigonometry-guide/" target="_blank" rel="noopener">← 도입 활동(1~3) 보기</a>
+                <button id="big-mode-btn" class="ghost-btn" type="button" aria-pressed="false">가&nbsp;큰 글씨</button>
+            </div>
+        </div>
+        <div class="hero">
+            <h1>삼각비의 뜻과 값</h1>
+            <p>각이 정해지면 변의 비도 정해집니다 — 사인(sin) · 코사인(cos) · 탄젠트(tan)</p>
+        </div>
+    </header>
+
+    <nav class="section-nav" aria-label="목차">
+        <a href="#similar">1. 각과 변의 비</a>
+        <a href="#definition">2. 삼각비란</a>
+        <a href="#values">3. 특수각</a>
+        <a href="#trends">4. 사분원</a>
+        <a href="#tables">5. 삼각비의 표</a>
+        <a href="#apply">6. 실생활 활용</a>
+    </nav>
+
+    <main>
+        <!-- ============ 1. 각과 변의 비 (탐구) ============ -->
+        <section id="similar" class="container">
+            <h2>1. 각이 같으면 변의 비도 같을까요?</h2>
+            <p class="lead">직각삼각형에서 각 A의 크기를 <b>하나로 정해 두고</b>, 삼각형만 크게·작게 바꿔 봅시다. 세 변의 길이는 모두 달라지는데, <b>두 변의 길이의 비</b>도 함께 달라질까요?</p>
+
+            <div class="trend-box">
+                <div class="sim-controls">
+                    <div class="ctrl">
+                        <label for="sim-angle">① 각 A를 정합니다</label>
+                        <input type="range" id="sim-angle" class="slider" min="10" max="80" value="35" step="1">
+                        <div class="angle-display">각 A = <span id="sim-angle-out">35</span>°</div>
+                        <div class="btn-row center">
+                            <button type="button" class="chip sim-chip" data-angle="30">30°</button>
+                            <button type="button" class="chip sim-chip" data-angle="45">45°</button>
+                            <button type="button" class="chip sim-chip" data-angle="60">60°</button>
+                        </div>
+                    </div>
+                    <div class="ctrl">
+                        <label for="sim-size">② 삼각형의 크기를 바꿉니다</label>
+                        <input type="range" id="sim-size" class="slider size" min="3" max="12" value="7" step="0.5">
+                        <div class="angle-display">빗변 c = <span id="sim-size-out">7.0</span> cm</div>
+                    </div>
+                </div>
+
+                <div class="sim-visual">
+                    <div class="viz-wrapper">
+                        <svg id="sim-svg" viewBox="0 0 620 600" preserveAspectRatio="xMidYMid meet" role="img"
+                             aria-label="각 A가 같고 크기만 다른 세 직각삼각형"></svg>
+                    </div>
+                    <div class="sim-side">
+                        <p class="scroll-hint" aria-hidden="true">← 표를 옆으로 밀 수 있어요 →</p>
+                        <div class="table-wrapper">
+                            <table class="sim-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">삼각형</th>
+                                        <th scope="col">높이<br><span class="sm">a</span></th>
+                                        <th scope="col">밑변<br><span class="sm">b</span></th>
+                                        <th scope="col">빗변<br><span class="sm">c</span></th>
+                                        <th scope="col" class="ratio rsin">a ÷ c<br><span class="sm">높이÷빗변</span></th>
+                                        <th scope="col" class="ratio rcos">b ÷ c<br><span class="sm">밑변÷빗변</span></th>
+                                        <th scope="col" class="ratio rtan">a ÷ b<br><span class="sm">높이÷밑변</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sim-tbody"></tbody>
+                            </table>
+                        </div>
+                        <p class="sim-conclusion" id="sim-conclusion"></p>
+                        <p class="sim-foot">※ 변의 길이는 소수 셋째 자리에서 반올림한 값입니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="tip">💡 크기가 다른 세 삼각형은 <b>모두 닮은 도형</b>입니다. 닮은 도형에서는 대응하는 변의 길이의 비가 일정하지요. 그래서 <b>각 A만 같으면 삼각형이 아무리 커지고 작아져도 두 변의 길이의 비는 변하지 않습니다.</b><br>그렇다면 이 세 가지 비는 <b>각 A의 크기만으로 정해지는 값</b>이라는 뜻입니다. 값마다 이름을 붙여 주면 편리하겠지요? → <b>2번 활동에서 이름을 붙여 봅시다.</b></p>
+        </section>
+
+        <!-- ============ 2. 정의 ============ -->
+        <section id="definition" class="container">
+            <h2>2. 삼각비란 무엇인가요?</h2>
+            <p class="lead">1번 활동에서 확인했듯이, <b>각 A가 정해지면 두 변의 길이의 비는 하나로 정해집니다.</b> 이 세 가지 비에 각각 이름을 붙인 것이 바로 삼각비입니다. (∠C = 90°인 직각삼각형 ABC)</p>
+            <div class="definition-grid">
+                <div class="svg-container">
+                    <svg viewBox="0 0 270 175" class="def-svg" role="img"
+                         aria-label="각 C가 직각인 직각삼각형 ABC. 높이는 파란색 변 a, 밑변은 주황색 변 b, 빗변은 회색 변 c입니다.">
+                        <!-- 밑변 b (주황) -->
+                        <line x1="45" y1="135" x2="185" y2="135" stroke="#d97706" stroke-width="4" stroke-linecap="round"/>
+                        <!-- 높이 a (파랑) -->
+                        <line x1="185" y1="135" x2="185" y2="45" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+                        <!-- 빗변 c (회색) -->
+                        <line x1="185" y1="45" x2="45" y2="135" stroke="#475569" stroke-width="4" stroke-linecap="round"/>
+                        <!-- 직각 표시 (C) -->
+                        <path d="M 170 135 L 170 120 L 185 120" fill="none" stroke="#475569" stroke-width="2"/>
+                        <!-- 각 A 호 -->
+                        <path d="M 75 135 A 30 30 0 0 0 70.2 118.8" fill="none" stroke="#0f172a" stroke-width="2"/>
+                        <!-- 꼭짓점 -->
+                        <text x="30" y="143" class="v-label">A</text>
+                        <text x="190" y="150" class="v-label">C</text>
+                        <text x="190" y="42" class="v-label">B</text>
+                        <!-- 변 이름 -->
+                        <text x="115" y="157" class="s-label" fill="#d97706" text-anchor="middle">밑변 b</text>
+                        <text x="196" y="95" class="s-label" fill="#2563eb">높이 a</text>
+                        <text x="106" y="82" class="s-label" fill="#475569" text-anchor="middle"
+                              transform="rotate(-32.7, 106, 82)">빗변 c</text>
+                    </svg>
+                </div>
+                <div class="formula-cards">
+                    <div class="card sin">
+                        <p><strong>sin A</strong> =
+                            <span class="fraction"><span class="numerator hi">높이</span><span class="denominator hy">빗변</span></span>
+                            =
+                            <span class="fraction"><span class="numerator hi">a</span><span class="denominator hy">c</span></span>
+                        </p>
+                    </div>
+                    <div class="card cos">
+                        <p><strong>cos A</strong> =
+                            <span class="fraction"><span class="numerator ba">밑변</span><span class="denominator hy">빗변</span></span>
+                            =
+                            <span class="fraction"><span class="numerator ba">b</span><span class="denominator hy">c</span></span>
+                        </p>
+                    </div>
+                    <div class="card tan">
+                        <p><strong>tan A</strong> =
+                            <span class="fraction"><span class="numerator hi">높이</span><span class="denominator ba">밑변</span></span>
+                            =
+                            <span class="fraction"><span class="numerator hi">a</span><span class="denominator ba">b</span></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <p class="tip">💡 색을 따라가 보세요. <span class="hi b">파란색은 높이</span>, <span class="ba b">주황색은 밑변</span>, <span class="hy b">회색은 빗변</span>입니다. 위 1번 표와 아래 4번 그림에서도 같은 색을 씁니다.</p>
+        </section>
+
+        <!-- ============ 3. 특수각 ============ -->
+        <section id="values" class="container">
+            <div class="sec-head">
+                <h2>3. 특수각의 삼각비</h2>
+                <div class="btn-row">
+                    <button type="button" class="ghost-btn" id="reveal-all">전체 보기</button>
+                    <button type="button" class="ghost-btn" id="hide-all">전체 숨기기</button>
+                </div>
+            </div>
+            <p class="lead">칸을 눌러 값을 확인해 보세요.</p>
+            <p class="scroll-hint" aria-hidden="true">← 표를 옆으로 밀 수 있어요 →</p>
+            <div class="table-wrapper">
+                <table class="special-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">각 A</th>
+                            <th scope="col">0°</th>
+                            <th scope="col">30°</th>
+                            <th scope="col">45°</th>
+                            <th scope="col">60°</th>
+                            <th scope="col">90°</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="rh-sin">sin A</th>
+                            <td tabindex="0" role="button"><span class="value">0</span></td>
+                            <td tabindex="0" role="button"><span class="value"><span class="fraction"><span class="numerator">1</span><span class="denominator">2</span></span></span></td>
+                            <td tabindex="0" role="button"><span class="value"><span class="fraction"><span class="numerator"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">2</span></span></span><span class="denominator">2</span></span></span></td>
+                            <td tabindex="0" role="button"><span class="value"><span class="fraction"><span class="numerator"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">3</span></span></span><span class="denominator">2</span></span></span></td>
+                            <td tabindex="0" role="button"><span class="value">1</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="rh-cos">cos A</th>
+                            <td tabindex="0" role="button"><span class="value">1</span></td>
+                            <td tabindex="0" role="button"><span class="value"><span class="fraction"><span class="numerator"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">3</span></span></span><span class="denominator">2</span></span></span></td>
+                            <td tabindex="0" role="button"><span class="value"><span class="fraction"><span class="numerator"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">2</span></span></span><span class="denominator">2</span></span></span></td>
+                            <td tabindex="0" role="button"><span class="value"><span class="fraction"><span class="numerator">1</span><span class="denominator">2</span></span></span></td>
+                            <td tabindex="0" role="button"><span class="value">0</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="rh-tan">tan A</th>
+                            <td tabindex="0" role="button"><span class="value">0</span></td>
+                            <td tabindex="0" role="button"><span class="value"><span class="fraction"><span class="numerator"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">3</span></span></span><span class="denominator">3</span></span></span></td>
+                            <td tabindex="0" role="button"><span class="value">1</span></td>
+                            <td tabindex="0" role="button"><span class="value"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">3</span></span></span></td>
+                            <td tabindex="0" role="button"><span class="value undef">정할 수 없다</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="note"><b>주의</b> — tan 90°는 값이 <b>무한대(∞)</b>인 것이 아니라, <b>정할 수 없습니다</b>. 90°에서는 밑변의 길이가 0이 되어 나눗셈을 할 수 없기 때문입니다.</p>
+        </section>
+
+        <!-- ============ 4. 사분원 ============ -->
+        <section id="trends" class="container">
+            <h2>4. 사분원에서 보는 삼각비</h2>
+            <p class="lead">반지름이 <b>1</b>인 사분원에서는 삼각비가 곧 <b>선분의 길이</b>가 됩니다. 각 A를 움직이며 세 선분이 어떻게 변하는지 살펴보세요.</p>
+            <div class="trend-box">
+                <div class="slider-container">
+                    <div class="slider-wrapper">
+                        <input type="range" id="trend-range" min="0" max="90" value="30" step="1" class="slider"
+                               aria-label="각 A의 크기">
+                        <div class="angle-display">각 A = <span id="current-angle">30</span>°</div>
+                    </div>
+                    <div class="btn-row center">
+                        <button type="button" class="chip" data-angle="0">0°</button>
+                        <button type="button" class="chip" data-angle="30">30°</button>
+                        <button type="button" class="chip" data-angle="45">45°</button>
+                        <button type="button" class="chip" data-angle="60">60°</button>
+                        <button type="button" class="chip" data-angle="90">90°</button>
+                    </div>
+                </div>
+                <div class="trend-visual">
+                    <div class="viz-wrapper">
+                        <svg id="trig-svg" class="unit-circle-svg" preserveAspectRatio="xMidYMid meet" role="img"
+                             aria-label="반지름이 1인 사분원 위에서 sin, cos, tan을 선분으로 나타낸 그림"></svg>
+                        <p class="zoom-note" id="zoom-note"></p>
+                    </div>
+                    <div class="trend-values">
+                        <div class="trend-item t-sin" tabindex="0" role="button">sin A = <span id="trend-sin">0.5000</span></div>
+                        <div class="trend-item t-cos" tabindex="0" role="button">cos A = <span id="trend-cos">0.8660</span></div>
+                        <div class="trend-item t-tan" tabindex="0" role="button">tan A = <span id="trend-tan">0.5774</span></div>
+                        <p class="mini-legend">
+                            <span class="key sin"></span> sin A · 높이<br>
+                            <span class="key cos"></span> cos A · 밑변<br>
+                            <span class="key tan"></span> tan A · x=1 위의 높이
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 5. 삼각비의 표 ============ -->
+        <section id="tables" class="container">
+            <h2>5. 삼각비의 표와 계산기</h2>
+            <p class="lead">0°부터 90°까지 1° 간격의 삼각비 표입니다. 각도를 입력하면 표에서 그 줄을 찾아 줍니다.</p>
+            <div class="calc-box">
+                <div class="input-group">
+                    <label for="angle">각도 (0°~90°)</label>
+                    <input type="number" id="angle" placeholder="예: 32" min="0" max="90" step="1" inputmode="numeric">
+                    <button id="calc-btn" type="button">찾기</button>
+                </div>
+                <p class="err" id="calc-err" role="alert"></p>
+                <div id="results" class="results-grid">
+                    <div class="res-item sin">sin <span class="res-angle">–</span>° = <span id="sin-res">–</span></div>
+                    <div class="res-item cos">cos <span class="res-angle">–</span>° = <span id="cos-res">–</span></div>
+                    <div class="res-item tan">tan <span class="res-angle">–</span>° = <span id="tan-res">–</span></div>
+                </div>
+            </div>
+            <p class="scroll-hint" aria-hidden="true">↕ 표를 위아래로 밀 수 있어요</p>
+            <div class="trig-table-wrapper">
+                <table class="trig-table">
+                    <thead>
+                        <tr><th scope="col">각도</th><th scope="col">sin</th><th scope="col">cos</th><th scope="col">tan</th></tr>
+                    </thead>
+                    <tbody id="trig-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ============ 6. 실생활 활용 ============ -->
+        <section id="apply" class="container">
+            <h2>6. 삼각비의 실생활 활용</h2>
+            <p class="lead">직접 잴 수 없는 길이를 삼각비로 구해 봅시다. (삼각비 값은 위 5번 표를 이용하세요.)</p>
+
+            <article class="problem">
+                <h3>문제 1. 나무의 높이</h3>
+                <div class="problem-body">
+                    <div class="prob-svg">
+                        <svg viewBox="0 0 260 160" role="img" aria-label="나무에서 20미터 떨어진 지점에서 올려본각이 32도인 상황">
+                            <line x1="30" y1="135" x2="230" y2="135" stroke="#94a3b8" stroke-width="3"/>
+                            <line x1="200" y1="135" x2="200" y2="45" stroke="#16a34a" stroke-width="6"/>
+                            <circle cx="200" cy="40" r="18" fill="#16a34a" opacity="0.85"/>
+                            <line x1="45" y1="120" x2="200" y2="45" stroke="#475569" stroke-width="2.5" stroke-dasharray="6 4"/>
+                            <line x1="45" y1="120" x2="45" y2="135" stroke="#2563eb" stroke-width="3"/>
+                            <line x1="45" y1="120" x2="200" y2="120" stroke="#d97706" stroke-width="3"/>
+                            <path d="M 75 120 A 30 30 0 0 0 71.6 105.5" fill="none" stroke="#0f172a" stroke-width="2"/>
+                            <text x="80" y="115" class="s-label">32°</text>
+                            <text x="120" y="134" class="s-label" fill="#d97706" text-anchor="middle">20 m</text>
+                            <text x="40" y="112" class="s-label" fill="#2563eb" text-anchor="end">1.5 m</text>
+                            <text x="212" y="90" class="s-label" fill="#16a34a">?</text>
+                        </svg>
+                    </div>
+                    <div class="prob-text">
+                        <p>나무에서 <b>20 m</b> 떨어진 곳에서 나무 꼭대기를 올려본각이 <b>32°</b>였습니다. 눈높이가 <b>1.5 m</b>일 때 나무의 높이는?</p>
+                        <button type="button" class="ghost-btn sol-btn">풀이 보기</button>
+                        <div class="solution">
+                            <p>눈높이에서 꼭대기까지의 높이를 <i>h</i>라 하면</p>
+                            <p class="eq">tan 32° = <span class="fraction"><span class="numerator">h</span><span class="denominator">20</span></span></p>
+                            <p><i>h</i> = 20 × tan 32° = 20 × 0.6249 = 12.5 (m)</p>
+                            <p><b>나무의 높이 = 12.5 + 1.5 = 약 14 m</b></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="problem">
+                <h3>문제 2. 휠체어 경사로</h3>
+                <div class="problem-body">
+                    <div class="prob-svg">
+                        <svg viewBox="0 78 260 70" role="img" aria-label="길이 12미터, 경사각 5도인 경사로">
+                            <line x1="25" y1="130" x2="235" y2="130" stroke="#94a3b8" stroke-width="3"/>
+                            <line x1="35" y1="130" x2="225" y2="95" stroke="#475569" stroke-width="5"/>
+                            <line x1="225" y1="130" x2="225" y2="95" stroke="#2563eb" stroke-width="4"/>
+                            <path d="M 70 130 A 35 35 0 0 0 69 123.8" fill="none" stroke="#0f172a" stroke-width="2"/>
+                            <text x="76" y="127" class="s-label">5°</text>
+                            <text x="120" y="105" class="s-label" fill="#475569" text-anchor="middle">12 m</text>
+                            <text x="232" y="118" class="s-label" fill="#2563eb">?</text>
+                        </svg>
+                    </div>
+                    <div class="prob-text">
+                        <p>길이가 <b>12 m</b>이고 지면과 이루는 각이 <b>5°</b>인 경사로가 있습니다. 이 경사로의 높이는?</p>
+                        <button type="button" class="ghost-btn sol-btn">풀이 보기</button>
+                        <div class="solution">
+                            <p>높이를 <i>h</i>라 하면 <i>h</i>는 빗변 12의 반대쪽 변이므로</p>
+                            <p class="eq">sin 5° = <span class="fraction"><span class="numerator">h</span><span class="denominator">12</span></span></p>
+                            <p><i>h</i> = 12 × sin 5° = 12 × 0.0872 = <b>약 1.05 m</b></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="problem">
+                <h3>문제 3. 벽에 기댄 사다리</h3>
+                <div class="problem-body">
+                    <div class="prob-svg">
+                        <svg viewBox="0 0 260 160" role="img" aria-label="길이 5미터 사다리가 지면과 65도를 이루며 벽에 기대어 있는 상황">
+                            <line x1="30" y1="135" x2="230" y2="135" stroke="#94a3b8" stroke-width="3"/>
+                            <line x1="185" y1="135" x2="185" y2="25" stroke="#94a3b8" stroke-width="6"/>
+                            <line x1="130" y1="135" x2="185" y2="40" stroke="#475569" stroke-width="5"/>
+                            <line x1="185" y1="135" x2="185" y2="40" stroke="#2563eb" stroke-width="4"/>
+                            <line x1="130" y1="135" x2="185" y2="135" stroke="#d97706" stroke-width="4"/>
+                            <path d="M 158 135 A 28 28 0 0 0 141.8 109.6" fill="none" stroke="#0f172a" stroke-width="2"/>
+                            <text x="164" y="118" class="s-label" text-anchor="middle">65°</text>
+                            <text x="128" y="76" class="s-label" fill="#475569" text-anchor="end">5 m</text>
+                            <text x="192" y="92" class="s-label" fill="#2563eb">?</text>
+                            <text x="157" y="152" class="s-label" fill="#d97706" text-anchor="middle">?</text>
+                        </svg>
+                    </div>
+                    <div class="prob-text">
+                        <p>길이 <b>5 m</b>인 사다리가 지면과 <b>65°</b>를 이루며 벽에 기대어 있습니다. 사다리가 벽에 닿은 높이와, 사다리 밑이 벽에서 떨어진 거리는?</p>
+                        <button type="button" class="ghost-btn sol-btn">풀이 보기</button>
+                        <div class="solution">
+                            <p>높이 = 5 × sin 65° = 5 × 0.9063 = <b>약 4.53 m</b></p>
+                            <p>벽에서 떨어진 거리 = 5 × cos 65° = 5 × 0.4226 = <b>약 2.11 m</b></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>삼각비 가이드 · 중학교 수학 수업 자료</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
