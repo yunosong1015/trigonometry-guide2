@@ -514,20 +514,43 @@ h3.sub {
 .sim-table th.rsin { color: var(--sin); }
 .sim-table th.rcos { color: var(--cos); }
 .sim-table th.rtan { color: var(--tan); }
-.sim-table td.ratio { background: #eff6ff; font-weight: 700; }
+.sim-table td.ratio {
+    background: #eff6ff; font-weight: 700;
+    position: relative; cursor: pointer; min-width: 66px;
+    transition: background 0.2s;
+}
 .sim-table td.ratio.rsin { color: var(--sin); }
 .sim-table td.ratio.rcos { color: var(--cos); }
 .sim-table td.ratio.rtan { color: var(--tan); }
+.sim-table td.ratio:hover { background: #dbeafe; }
+
+/* 비의 값은 눌러서 확인합니다 */
+.sim-table td.ratio .value {
+    visibility: hidden; opacity: 0;
+    transition: opacity 0.25s, visibility 0.25s;
+}
+.sim-table td.ratio.show .value { visibility: visible; opacity: 1; }
+.sim-table td.ratio::after {
+    content: '?';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary); font-weight: 700;
+    opacity: 1; transition: opacity 0.25s;
+}
+.sim-table td.ratio.show::after { opacity: 0; }
 .sim-table tbody th { background: #f8fafc; font-size: 0.82rem; white-space: nowrap; }
 .sim-table tr.current th, .sim-table tr.current td { background: #fefce8; }
 .sim-table tr.current td.ratio { background: #dbeafe; }
 .sim-table tr.current th { color: #a16207; font-weight: 700; }
 
+.sim-conc-row { margin-top: 0.9rem; }
 .sim-conclusion {
+    display: none;
     margin-top: 0.9rem; padding: 0.7rem 0.9rem;
     background: #ecfdf5; border-left: 4px solid #16a34a; border-radius: 8px;
     font-size: 0.92rem; font-weight: 600; color: #14532d;
 }
+.sim-conclusion.open { display: block; }
 .sim-foot { font-size: 0.78rem; color: #64748b; margin-top: 0.4rem; text-align: right; }
 
 /* ---------------- 4. 사분원 ---------------- */
@@ -696,8 +719,11 @@ footer { text-align: center; padding: 2rem 1rem; background: var(--navy); color:
     .probe-feedback, .probe-summary { display: block !important; }
     .container { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; margin-bottom: 1rem; page-break-inside: avoid; }
     /* 인쇄물에서는 가려둔 답을 모두 보이게 */
-    .special-table td .value, .trend-item span { visibility: visible !important; opacity: 1 !important; }
-    .special-table td::after, .trend-item::after { display: none !important; }
+    .special-table td .value, .trend-item span,
+    .sim-table td.ratio .value { visibility: visible !important; opacity: 1 !important; }
+    .special-table td::after, .trend-item::after,
+    .sim-table td.ratio::after { display: none !important; }
+    .sim-conclusion { display: block !important; }
     .solution { display: block !important; }
     .trig-table-wrapper { max-height: none; overflow: visible; }
     footer { background: none; color: #000; }

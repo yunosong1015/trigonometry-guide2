@@ -336,7 +336,12 @@
         var simSizeOut = document.getElementById('sim-size-out');
         var simBody = document.getElementById('sim-tbody');
         var simConc = document.getElementById('sim-conclusion');
+        var simConcBtn = document.getElementById('sim-conc-btn');
         var simChips = document.querySelectorAll('#similar .sim-chip');
+
+        /* 표 안의 비 값은 눌러야 보입니다 — 슬라이더를 움직여도 상태가 유지됩니다 */
+        var simShown = {};
+        var simConcOpen = false;
 
         var SIM = { S: 37, CMAX: 12, OX: 70, OY: 520, GHOST: [5, 10] };
 
@@ -436,7 +441,7 @@
                 { name: '큰 삼각형', c: SIM.GHOST[1], cur: false }
             ];
             simBody.innerHTML = '';
-            rowsDef.forEach(function (r) {
+            rowsDef.forEach(function (r, ri) {
                 var tr = document.createElement('tr');
                 if (r.cur) tr.className = 'current';
                 var th = document.createElement('th');
@@ -448,9 +453,24 @@
                 });
                 /* 비는 각 A만으로 정해지므로 세 줄이 모두 같은 값이 됩니다 */
                 [['rsin', sn], ['rcos', cs], ['rtan', tn]].forEach(function (pair) {
+                    var key = ri + '-' + pair[0];
                     var td = document.createElement('td');
-                    td.className = 'ratio ' + pair[0];
-                    td.textContent = pair[1].toFixed(4);
+                    td.className = 'ratio ' + pair[0] + (simShown[key] ? ' show' : '');
+                    td.tabIndex = 0;
+                    td.setAttribute('role', 'button');
+                    td.setAttribute('aria-label', '비의 값 보기');
+                    var sp = document.createElement('span');
+                    sp.className = 'value';
+                    sp.textContent = pair[1].toFixed(4);
+                    td.appendChild(sp);
+                    function flip() {
+                        simShown[key] = !simShown[key];
+                        td.classList.toggle('show', !!simShown[key]);
+                    }
+                    td.addEventListener('click', flip);
+                    td.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+                    });
                     tr.appendChild(td);
                 });
                 simBody.appendChild(tr);
@@ -459,10 +479,19 @@
             if (simConc) {
                 simConc.innerHTML = '✅ 세 변의 길이는 모두 다르지만, 각 A = ' + deg + '°인 한 ' +
                     '<b>a÷c, b÷c, a÷b 의 값은 세 삼각형이 똑같습니다.</b>';
+                simConc.classList.toggle('open', simConcOpen);
             }
 
             simChips.forEach(function (ch) {
                 ch.classList.toggle('active', parseInt(ch.dataset.angle, 10) === deg);
+            });
+        }
+
+        if (simConcBtn) {
+            simConcBtn.addEventListener('click', function () {
+                simConcOpen = !simConcOpen;
+                simConcBtn.textContent = simConcOpen ? '결론 숨기기' : '결론';
+                if (simConc) simConc.classList.toggle('open', simConcOpen);
             });
         }
 
