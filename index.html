@@ -187,7 +187,10 @@
                         <text x="203" y="105" class="dm" fill="#475569">2</text>
                         <text x="105" y="212" class="dm" text-anchor="middle">1</text>
                         <text x="195" y="212" class="dm" text-anchor="middle" fill="#d97706">1</text>
-                        <text x="159" y="118" class="dm" fill="#2563eb">√3</text>
+                        <g transform="translate(157,118)">
+                            <path d="M 0 -5 L 3 0 L 6.5 -14 L 18 -14" fill="none" stroke="#2563eb" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                            <text x="12.25" y="-1" class="dm" fill="#2563eb" text-anchor="middle">3</text>
+                        </g>
                         <text x="196" y="182" class="dm">60°</text>
                         <text x="160" y="82" class="dm">30°</text>
                     </svg>
@@ -200,7 +203,7 @@
                             <button type="button" class="peek"><span class="peek-val">30°</span></button> 가 됩니다.</li>
                         <li>수선은 밑변도 반으로 나누므로 <span class="ba b">MB</span> =
                             <button type="button" class="peek"><span class="peek-val">1</span></button> 입니다.</li>
-                        <li>피타고라스 정리로 <span class="hi b">CM</span> = √(2² − 1²) =
+                        <li>피타고라스 정리로 <span class="hi b">CM</span> = <span class="sqrt"><span class="sqrt-symbol">&#8730;</span><span class="sqrt-content">2² − 1²</span></span> =
                             <button type="button" class="peek"><span class="peek-val"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">3</span></span></span></button> 입니다.</li>
                     </ol>
                     <p class="derive-hint">→ 이제 직각삼각형 CMB에서 <b>∠B = 60°</b>, <b>∠MCB = 30°</b>에 대한 삼각비를 모두 구할 수 있습니다.</p>
@@ -224,8 +227,10 @@
                         <text x="52" y="40" class="dl">D</text>
                         <text x="135" y="215" class="dm" text-anchor="middle" fill="#d97706">1</text>
                         <text x="220" y="125" class="dm" fill="#2563eb">1</text>
-                        <text x="121" y="105" class="dm" text-anchor="middle" fill="#475569"
-                              transform="rotate(-45, 121, 105)">√2</text>
+                        <g transform="translate(103,108)">
+                            <path d="M 0 -5 L 3 0 L 6.5 -14 L 18 -14" fill="none" stroke="#475569" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                            <text x="12.25" y="-1" class="dm" fill="#475569" text-anchor="middle">2</text>
+                        </g>
                         <text x="103" y="187" class="dm">45°</text>
                     </svg>
                 </div>
@@ -234,7 +239,7 @@
                         <li>한 변의 길이가 <b>1</b>인 정사각형 ABCD를 그리고 대각선 AC를 긋습니다.</li>
                         <li>대각선은 직각을 반으로 나누므로 ∠CAB =
                             <button type="button" class="peek"><span class="peek-val">45°</span></button> 입니다.</li>
-                        <li>피타고라스 정리로 <span class="hy b">AC</span> = √(1² + 1²) =
+                        <li>피타고라스 정리로 <span class="hy b">AC</span> = <span class="sqrt"><span class="sqrt-symbol">&#8730;</span><span class="sqrt-content">1² + 1²</span></span> =
                             <button type="button" class="peek"><span class="peek-val"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">2</span></span></span></button> 입니다.</li>
                     </ol>
                     <p class="derive-hint">→ 이제 직각삼각형 ABC에서 <b>∠A = 45°</b>에 대한 삼각비를 구할 수 있습니다.</p>
