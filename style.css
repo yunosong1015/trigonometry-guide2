@@ -300,6 +300,47 @@ button { font: inherit; cursor: pointer; }
 .sqrt-symbol { font-size: 1.15em; margin-right: -1px; }
 .sqrt-content { border-top: 1.5px solid currentColor; padding: 2px 3px 0; line-height: 1; display: inline-block; }
 
+/* ---------------- 특수각 — 정삼각형 · 정사각형으로 구하기 ---------------- */
+.derive-grid {
+    display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 1.5rem; align-items: center;
+    padding: 1.1rem; border: 1px solid var(--line); border-radius: 10px;
+    background: #f8fafc;
+}
+@media (max-width: 780px) { .derive-grid { grid-template-columns: 1fr; gap: 1rem; } }
+
+.derive-fig svg { width: 100%; height: auto; background: #fff; border-radius: 8px; }
+.derive-fig .dl { font-size: 15px; font-weight: 700; fill: var(--ink); }
+.derive-fig .dm { font-size: 15px; font-weight: 700; fill: var(--ink); }
+
+.step-list { margin: 0 0 0 1.15rem; padding: 0; }
+.step-list li { margin-bottom: 0.7rem; font-size: 0.94rem; line-height: 1.9; }
+.derive-hint {
+    margin-top: 0.4rem; padding: 0.6rem 0.8rem; font-size: 0.9rem;
+    background: #eff6ff; border-left: 4px solid var(--primary); border-radius: 8px;
+}
+.tinyline { font-size: 0.85rem; color: #64748b; }
+
+/* 눌러서 확인하는 인라인 값 */
+.peek {
+    position: relative; display: inline-flex;
+    align-items: center; justify-content: center;
+    min-width: 3.4em; min-height: 2em; padding: 0 0.45em; margin: 0 0.15em;
+    border: 1px solid #bfdbfe; border-radius: 7px; background: #fff;
+    font: inherit; font-weight: 700; color: var(--navy);
+    vertical-align: middle; cursor: pointer; transition: background 0.2s;
+}
+.peek:hover { background: #eff6ff; }
+.peek .peek-val { visibility: hidden; opacity: 0; transition: opacity 0.25s, visibility 0.25s; }
+.peek.show .peek-val { visibility: visible; opacity: 1; }
+.peek::after {
+    content: '?'; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary); font-weight: 700; transition: opacity 0.25s;
+}
+.peek.show::after { opacity: 0; }
+.peek.show { background: #eff6ff; border-color: var(--primary); }
+
 /* ---------------- 2. 특수각 표 ---------------- */
 .scroll-hint {
     display: none;
@@ -744,6 +785,9 @@ footer { text-align: center; padding: 2rem 1rem; background: var(--navy); color:
     .sim-table td.ratio::after { display: none !important; }
     .sim-conclusion { display: block !important; }
     .tip-body[hidden] { display: block !important; }
+    .peek .peek-val { visibility: visible !important; opacity: 1 !important; }
+    .peek::after { display: none !important; }
+    .peek { border: none !important; background: none !important; min-width: 0 !important; }
     .tip-toggle { display: none !important; }
     .solution { display: block !important; }
     .trig-table-wrapper { max-height: none; overflow: visible; }

@@ -534,13 +534,21 @@
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
             });
         });
+        /* 정삼각형 · 정사각형에서 구하는 인라인 값 (눌러서 확인) */
+        var peeks = document.querySelectorAll('.peek');
+        peeks.forEach(function (b) {
+            b.addEventListener('click', function () { b.classList.toggle('show'); });
+        });
+
         var revealAll = document.getElementById('reveal-all');
         var hideAll = document.getElementById('hide-all');
         if (revealAll) revealAll.addEventListener('click', function () {
             specialCells.forEach(function (c) { c.classList.add('show'); });
+            peeks.forEach(function (b) { b.classList.add('show'); });
         });
         if (hideAll) hideAll.addEventListener('click', function () {
             specialCells.forEach(function (c) { c.classList.remove('show'); });
+            peeks.forEach(function (b) { b.classList.remove('show'); });
         });
 
         /* ===================================================
