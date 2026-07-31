@@ -201,6 +201,10 @@ h3 { font-size: 1.1rem; color: var(--navy); margin-bottom: 0.75rem; }
 .tip-label { font-size: 0.9rem; }
 .tip-body { margin-top: 0.85rem; }
 
+.note.tip-collapsible { padding: 0.75rem 1rem; }
+.note.tip-collapsible .tip-toggle { color: var(--tan); }
+.note.tip-collapsible .tip-toggle:hover .tip-icon { background: #fef2f2; }
+
 .note {
     margin-top: 1.25rem; padding: 0.9rem 1rem;
     background: #fef2f2; border-left: 4px solid var(--tan);
@@ -312,6 +316,10 @@ button { font: inherit; cursor: pointer; }
 .derive-fig svg { width: 100%; height: auto; background: #fff; border-radius: 8px; }
 .derive-fig .dl { font-size: 15px; font-weight: 700; fill: var(--ink); }
 .derive-fig .dm { font-size: 15px; font-weight: 700; fill: var(--ink); }
+
+/* 그림 속 각도·변 길이는 단계를 열어야 나타납니다 */
+.fig-hide { opacity: 0; transition: opacity 0.3s; }
+.fig-hide.on { opacity: 1; }
 
 .step-list { margin: 0 0 0 1.15rem; padding: 0; }
 .step-list li { margin-bottom: 0.7rem; font-size: 0.94rem; line-height: 1.9; }
@@ -787,6 +795,7 @@ footer { text-align: center; padding: 2rem 1rem; background: var(--navy); color:
     .tip-body[hidden] { display: block !important; }
     .peek .peek-val { visibility: visible !important; opacity: 1 !important; }
     .peek::after { display: none !important; }
+    .fig-hide { opacity: 1 !important; }
     .peek { border: none !important; background: none !important; min-width: 0 !important; }
     .tip-toggle { display: none !important; }
     .solution { display: block !important; }

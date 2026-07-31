@@ -487,22 +487,6 @@
             });
         }
 
-        /* 아래 정리 상자 — 아이콘을 눌러 펼칩니다 */
-        var simTip = document.getElementById('sim-tip');
-        if (simTip) {
-            var tipBtn = simTip.querySelector('.tip-toggle');
-            var tipBody = simTip.querySelector('.tip-body');
-            var tipLabel = simTip.querySelector('.tip-label');
-            if (tipBtn && tipBody) {
-                tipBtn.addEventListener('click', function () {
-                    var willOpen = tipBody.hidden;
-                    tipBody.hidden = !willOpen;
-                    tipBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
-                    if (tipLabel) tipLabel.textContent = willOpen ? '정리 숨기기' : '정리 보기';
-                });
-            }
-        }
-
         if (simConcBtn) {
             simConcBtn.addEventListener('click', function () {
                 simConcOpen = !simConcOpen;
@@ -536,19 +520,33 @@
         });
         /* 정삼각형 · 정사각형에서 구하는 인라인 값 (눌러서 확인) */
         var peeks = document.querySelectorAll('.peek');
+
+        /* 값을 열면 그림 속 각도·변 길이도 함께 나타납니다 */
+        function syncFigure(b) {
+            var key = b.dataset.fig;
+            if (!key) return;
+            var on = b.classList.contains('show');
+            document.querySelectorAll('[data-peek="' + key + '"]').forEach(function (n) {
+                n.classList.toggle('on', on);
+            });
+        }
         peeks.forEach(function (b) {
-            b.addEventListener('click', function () { b.classList.toggle('show'); });
+            b.addEventListener('click', function () {
+                b.classList.toggle('show');
+                syncFigure(b);
+            });
+            syncFigure(b);
         });
 
         var revealAll = document.getElementById('reveal-all');
         var hideAll = document.getElementById('hide-all');
         if (revealAll) revealAll.addEventListener('click', function () {
             specialCells.forEach(function (c) { c.classList.add('show'); });
-            peeks.forEach(function (b) { b.classList.add('show'); });
+            peeks.forEach(function (b) { b.classList.add('show'); syncFigure(b); });
         });
         if (hideAll) hideAll.addEventListener('click', function () {
             specialCells.forEach(function (c) { c.classList.remove('show'); });
-            peeks.forEach(function (b) { b.classList.remove('show'); });
+            peeks.forEach(function (b) { b.classList.remove('show'); syncFigure(b); });
         });
 
         /* ===================================================
@@ -947,7 +945,27 @@
         showSection(window.location.hash.slice(1) || (sections[0] && sections[0].id), false);
 
         /* ===================================================
-           9. 실생활 문제 - 풀이 보기
+           9. 접히는 상자 (정리 · 색 약속 · 주의)
+           =================================================== */
+        document.querySelectorAll('.tip-collapsible').forEach(function (box) {
+            var btn = box.querySelector('.tip-toggle');
+            var body = box.querySelector('.tip-body');
+            var label = box.querySelector('.tip-label');
+            if (!btn || !body) return;
+            btn.addEventListener('click', function () {
+                var willOpen = body.hidden;
+                body.hidden = !willOpen;
+                btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+                if (label) {
+                    label.textContent = willOpen
+                        ? (box.dataset.open || '숨기기')
+                        : (box.dataset.closed || '보기');
+                }
+            });
+        });
+
+        /* ===================================================
+           10. 실생활 문제 - 풀이 보기
            =================================================== */
         document.querySelectorAll('.sol-btn').forEach(function (btn) {
             btn.addEventListener('click', function () {

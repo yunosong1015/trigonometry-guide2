@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>삼각비 가이드 - 개념 학습</title>
+    <title>세상을 측정하는 도구, 삼각비 - 개념 학습</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,8 +16,8 @@
             </div>
         </div>
         <div class="hero">
-            <h1>삼각비의 뜻과 값</h1>
-            <p>각이 정해지면 변의 비도 정해집니다 — 사인(sin) · 코사인(cos) · 탄젠트(tan)</p>
+            <h1>세상을 측정하는 도구, 삼각비</h1>
+            <p>사인(sin), 코사인(cos), 탄젠트(tan)의 뜻부터 실생활 활용까지</p>
         </div>
     </header>
 
@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <div class="tip tip-collapsible" id="sim-tip">
+            <div class="tip tip-collapsible" id="sim-tip" data-closed="정리 보기" data-open="정리 숨기기">
                 <button type="button" class="tip-toggle" aria-expanded="false" aria-controls="sim-tip-body">
                     <span class="tip-icon">💡</span><span class="tip-label">정리 보기</span>
                 </button>
@@ -148,7 +148,12 @@
                     </div>
                 </div>
             </div>
-            <p class="tip">💡 색을 따라가 보세요. <span class="hi b">파란색은 높이</span>, <span class="ba b">주황색은 밑변</span>, <span class="hy b">회색은 빗변</span>입니다. 위 1번 표와 아래 4번 그림에서도 같은 색을 씁니다.</p>
+            <div class="tip tip-collapsible" data-closed="색 약속 보기" data-open="색 약속 숨기기">
+                <button type="button" class="tip-toggle" aria-expanded="false" aria-controls="def-tip-body">
+                    <span class="tip-icon">💡</span><span class="tip-label">색 약속 보기</span>
+                </button>
+                <div class="tip-body" id="def-tip-body" hidden>색을 따라가 보세요. <span class="hi b">파란색은 높이</span>, <span class="ba b">주황색은 밑변</span>, <span class="hy b">회색은 빗변</span>입니다. 위 1번 표와 아래 4번 그림에서도 같은 색을 씁니다.</div>
+            </div>
         </section>
 
         <!-- ============ 3. 특수각 ============ -->
@@ -183,28 +188,28 @@
                         <text x="244" y="205" class="dl">B</text>
                         <text x="150" y="26" class="dl" text-anchor="middle">C</text>
                         <text x="150" y="205" class="dl" text-anchor="middle">M</text>
-                        <text x="92" y="106" class="dm" text-anchor="end">2</text>
-                        <text x="203" y="105" class="dm" fill="#475569">2</text>
-                        <text x="105" y="212" class="dm" text-anchor="middle">1</text>
-                        <text x="195" y="212" class="dm" text-anchor="middle" fill="#d97706">1</text>
-                        <g transform="translate(157,118)">
+                        <text x="92" y="106" class="dm fig-hide" data-peek="t1" text-anchor="end">2</text>
+                        <text x="203" y="105" class="dm fig-hide" data-peek="t1" fill="#475569">2</text>
+                        <text x="105" y="212" class="dm fig-hide" data-peek="t3" text-anchor="middle">1</text>
+                        <text x="195" y="212" class="dm fig-hide" data-peek="t3" text-anchor="middle" fill="#d97706">1</text>
+                        <g transform="translate(157,118)" class="fig-hide" data-peek="t4">
                             <path d="M 0 -5 L 3 0 L 6.5 -14 L 18 -14" fill="none" stroke="#2563eb" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
                             <text x="12.25" y="-1" class="dm" fill="#2563eb" text-anchor="middle">3</text>
                         </g>
-                        <text x="196" y="182" class="dm">60°</text>
-                        <text x="160" y="82" class="dm">30°</text>
+                        <text x="196" y="182" class="dm fig-hide" data-peek="t1">60°</text>
+                        <text x="160" y="82" class="dm fig-hide" data-peek="t2">30°</text>
                     </svg>
                 </div>
                 <div class="derive-steps">
                     <ol class="step-list">
                         <li>한 변의 길이가 <b>2</b>인 정삼각형 ABC를 그립니다. 정삼각형의 한 각의 크기는
-                            <button type="button" class="peek"><span class="peek-val">60°</span></button> 입니다.</li>
+                            <button type="button" class="peek" data-fig="t1"><span class="peek-val">60°</span></button> 입니다.</li>
                         <li>꼭짓점 C에서 밑변에 수선 CM을 그으면, ∠ACB가 반으로 나뉘어 ∠MCB =
-                            <button type="button" class="peek"><span class="peek-val">30°</span></button> 가 됩니다.</li>
+                            <button type="button" class="peek" data-fig="t2"><span class="peek-val">30°</span></button> 가 됩니다.</li>
                         <li>수선은 밑변도 반으로 나누므로 <span class="ba b">MB</span> =
-                            <button type="button" class="peek"><span class="peek-val">1</span></button> 입니다.</li>
+                            <button type="button" class="peek" data-fig="t3"><span class="peek-val">1</span></button> 입니다.</li>
                         <li>피타고라스 정리로 <span class="hi b">CM</span> = <span class="sqrt"><span class="sqrt-symbol">&#8730;</span><span class="sqrt-content">2² − 1²</span></span> =
-                            <button type="button" class="peek"><span class="peek-val"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">3</span></span></span></button> 입니다.</li>
+                            <button type="button" class="peek" data-fig="t4"><span class="peek-val"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">3</span></span></span></button> 입니다.</li>
                     </ol>
                     <p class="derive-hint">→ 이제 직각삼각형 CMB에서 <b>∠B = 60°</b>, <b>∠MCB = 30°</b>에 대한 삼각비를 모두 구할 수 있습니다.</p>
                 </div>
@@ -225,22 +230,22 @@
                         <text x="214" y="210" class="dl">B</text>
                         <text x="214" y="40" class="dl">C</text>
                         <text x="52" y="40" class="dl">D</text>
-                        <text x="135" y="215" class="dm" text-anchor="middle" fill="#d97706">1</text>
-                        <text x="220" y="125" class="dm" fill="#2563eb">1</text>
-                        <g transform="translate(103,108)">
+                        <text x="135" y="215" class="dm fig-hide" data-peek="s1" text-anchor="middle" fill="#d97706">1</text>
+                        <text x="220" y="125" class="dm fig-hide" data-peek="s1" fill="#2563eb">1</text>
+                        <g transform="translate(103,108)" class="fig-hide" data-peek="s2">
                             <path d="M 0 -5 L 3 0 L 6.5 -14 L 18 -14" fill="none" stroke="#475569" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
                             <text x="12.25" y="-1" class="dm" fill="#475569" text-anchor="middle">2</text>
                         </g>
-                        <text x="103" y="187" class="dm">45°</text>
+                        <text x="103" y="187" class="dm fig-hide" data-peek="s1">45°</text>
                     </svg>
                 </div>
                 <div class="derive-steps">
                     <ol class="step-list">
                         <li>한 변의 길이가 <b>1</b>인 정사각형 ABCD를 그리고 대각선 AC를 긋습니다.</li>
                         <li>대각선은 직각을 반으로 나누므로 ∠CAB =
-                            <button type="button" class="peek"><span class="peek-val">45°</span></button> 입니다.</li>
+                            <button type="button" class="peek" data-fig="s1"><span class="peek-val">45°</span></button> 입니다.</li>
                         <li>피타고라스 정리로 <span class="hy b">AC</span> = <span class="sqrt"><span class="sqrt-symbol">&#8730;</span><span class="sqrt-content">1² + 1²</span></span> =
-                            <button type="button" class="peek"><span class="peek-val"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">2</span></span></span></button> 입니다.</li>
+                            <button type="button" class="peek" data-fig="s2"><span class="peek-val"><span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">2</span></span></span></button> 입니다.</li>
                     </ol>
                     <p class="derive-hint">→ 이제 직각삼각형 ABC에서 <b>∠A = 45°</b>에 대한 삼각비를 구할 수 있습니다.</p>
                 </div>
@@ -290,7 +295,12 @@
                     </tbody>
                 </table>
             </div>
-            <p class="note"><b>주의</b> — tan 90°는 값이 <b>무한대(∞)</b>인 것이 아니라, <b>정할 수 없습니다</b>. 90°에서는 밑변의 길이가 0이 되어 나눗셈을 할 수 없기 때문입니다.</p>
+            <div class="note tip-collapsible" data-closed="주의할 점 보기" data-open="주의할 점 숨기기">
+                <button type="button" class="tip-toggle" aria-expanded="false" aria-controls="note-body">
+                    <span class="tip-icon">⚠</span><span class="tip-label">주의할 점 보기</span>
+                </button>
+                <div class="tip-body" id="note-body" hidden><b>주의</b> — tan 90°는 값이 <b>무한대(∞)</b>인 것이 아니라, <b>정할 수 없습니다</b>. 90°에서는 밑변의 길이가 0이 되어 나눗셈을 할 수 없기 때문입니다.</div>
+            </div>
         </section>
 
         <!-- ============ 4. 사분원 ============ -->
